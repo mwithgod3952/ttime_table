@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS 심화 프로그램 인포그래픽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .chart-container-responsive { /* Renamed for clarity */
+            position: relative;
+            width: 100%;
+            max-width: 500px; /* Max width for larger screens */
+            margin-left: auto;
+            margin-right: auto;
+            height: 250px; /* Base height for mobile */
+        }
+        @media (min-width: 640px) { /* sm and up */
+            .chart-container-responsive {
+                height: 280px;
+            }
+        }
+        @media (min-width: 768px) { /* md and up */
+            .chart-container-responsive {
+                height: 300px;
+                max-width: 550px;
+            }
+        }
+        .flowchart-step-responsive { /* Renamed for clarity */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .flowchart-step-responsive:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .flowchart-arrow-responsive { /* Renamed for clarity */
+            font-size: 1.75rem; /* Base size for mobile */
+            line-height: 1;
+            color: #9CA3AF; /* gray-400 */
+        }
+        @media (min-width: 768px) { /* md and up */
+            .flowchart-arrow-responsive {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10">
+        
+        <header class="text-center mb-8 sm:mb-10 md:mb-12">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900">IT 특성화고 입시 & 경시대회 대비</h1>
+            <p class="text-md sm:text-lg md:text-xl font-bold text-blue-600">컴퓨터 과학(CS) 심화 프로그램</p>
+        </header>
+
+        <main class="space-y-8 sm:space-y-10 md:space-y-12">
+            <section id="importance">
+                <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-6 sm:mb-8 md:mb-10 text-gray-800">과정의 중요성</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+                    <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 flex flex-col items-center text-center">
+                        <div class="text-3xl sm:text-4xl mb-2 sm:mb-3">🚀</div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2">입시 경쟁력 제고</h3>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">IT 특성화고 핵심 평가요소(코드 구현, 수학적 사고력)를 체계적으로 강화합니다.</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 flex flex-col items-center text-center">
+                        <div class="text-3xl sm:text-4xl mb-2 sm:mb-3">🏆</div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2">경시대회 수상 실적</h3>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-700 mb-2 sm:mb-3 leading-relaxed">공신력 있는 대회 수상은 중요 평가 요소. 실질적 성과 목표.</p>
+                        <ul class="space-y-1.5 sm:space-y-2 text-left w-full text-xs sm:text-sm md:text-base">
+                            <li class="flex items-center bg-blue-50 p-1.5 sm:p-2 rounded-lg"><span class="text-yellow-500 mr-1.5 sm:mr-2 text-md sm:text-lg">🥇</span> KOI</li>
+                            <li class="flex items-center bg-blue-50 p-1.5 sm:p-2 rounded-lg"><span class="text-yellow-500 mr-1.5 sm:mr-2 text-md sm:text-lg">🥇</span> 디미고 IT 올림피아드</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 flex flex-col items-center text-center">
+                        <div class="text-3xl sm:text-4xl mb-2 sm:mb-3">📚</div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2">CS 기본기</h3>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">고등 교육과정 전공 적합성의 객관적 준거 제공이 목적입니다.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="curriculum">
+                <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-6 sm:mb-8 md:mb-10 text-gray-800">로드맵</h2>
+                <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 md:p-8">
+                    <div class="flex flex-col md:flex-row items-center justify-around space-y-3 sm:space-y-4 md:space-y-0 md:space-x-4 mb-4 sm:mb-6 md:mb-8">
+                        <div class="flowchart-step-responsive bg-gray-100 p-3 sm:p-4 md:p-6 rounded-xl text-center w-full md:w-2/5">
+                            <p class="text-blue-600 font-bold text-sm sm:text-base md:text-lg">1단계 (8개월)</p>
+                            <h4 class="text-md sm:text-lg md:text-xl font-extrabold text-gray-900 my-1">CS 핵심 및 대회 준비</h4>
+                            <p class="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">'COS Pro 1급' 목표, 월별 성취도 점검.</p>
+                        </div>
+                        <div class="flowchart-arrow-responsive transform md:rotate-0 text-center md:text-left flex items-center justify-center py-2 md:py-0">➡️</div>
+                        <div class="flowchart-step-responsive bg-blue-100 border-2 border-blue-500 p-3 sm:p-4 md:p-6 rounded-xl text-center w-full md:w-2/5">
+                            <p class="text-blue-800 font-bold text-sm sm:text-base md:text-lg">2단계</p>
+                            <h4 class="text-md sm:text-lg md:text-xl font-extrabold text-gray-900 my-1">경시 심화 학습</h4>
+                            <p class="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">1단계 통과 후, KOI 등 입상 목표 심화 학습.</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 sm:mt-6 md:mt-8"> 
+                        <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-center mb-2 sm:mb-3 md:mb-4">1단계 과목별 학습 비중</h4>
+                         <div class="chart-container-responsive">
+                             <canvas id="subjectsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="operation">
+                 <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-6 sm:mb-8 md:mb-10 text-gray-800">운영 및 수강료</h2>
+                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+                     <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 text-center">
+                        <p class="text-gray-600 text-xs sm:text-sm md:text-base font-medium">개강일</p>
+                        <p class="text-xl sm:text-2xl md:text-3xl font-black text-blue-600 mt-1">2025/06/07</p>
+                     </div>
+                     <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 text-center">
+                        <p class="text-gray-600 text-xs sm:text-sm md:text-base font-medium">수업 시간</p>
+                        <p class="text-xl sm:text-2xl md:text-3xl font-black text-blue-600 mt-1">월 16H</p>
+                     </div>
+                     <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 text-center">
+                        <p class="text-gray-600 text-xs sm:text-sm md:text-base font-medium">수업 구성</p>
+                        <p class="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mt-1">주 4H</p>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-600">(요일/시간 협의)</p>
+                     </div>
+                      <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 text-center border-4 border-blue-500">
+                        <p class="text-gray-600 text-xs sm:text-sm md:text-base font-medium">월 수강료</p>
+                        <p class="text-xl sm:text-2xl md:text-3xl font-black text-blue-600 mt-1">50만원</p>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed mt-1">(* 1:1 수업, 자료 지원)</p>
+                     </div>
+                 </div>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-8 sm:mt-10 md:mt-12 text-gray-600 text-xs sm:text-sm">
+            <p>&copy; 2025 James, the Instructor. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+<script>
+    function wrapLabelsResponsive(label) { 
+        const maxLength = window.innerWidth < 640 ? 10 : 14; // Shorter for mobile
+        if (typeof label === 'string' && label.length > maxLength) {
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine += (currentLine.length === 0 ? '' : ' ') + word;
+                }
+            });
+            if (currentLine.length > 0) lines.push(currentLine);
+            return lines.length > 0 ? lines : [label]; 
+        }
+        return label;
+    }
+
+    const chartOptionsBase = { 
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        if (!item || !item.chart || !item.chart.data || !item.chart.data.labels || typeof item.dataIndex === 'undefined') return '';
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                            return label.join(' ');
+                        }
+                        return label;
+                    }
+                },
+                bodyFont: { family: "'Noto Sans KR', sans-serif" }, 
+                titleFont: { family: "'Noto Sans KR', sans-serif" }, 
+                padding: {top:8, bottom:8, left:10, right:10},
+            },
+            legend: {
+                labels: {
+                    font: { family: "'Noto Sans KR', sans-serif" }, 
+                    boxWidth: 10, 
+                    padding: 8 
+                }
+            }
+        },
+        scales: {
+            y: {
+                ticks: { font: { family: "'Noto Sans KR', sans-serif" } } 
+            },
+            x: {
+                ticks: { font: { family: "'Noto Sans KR', sans-serif" } } 
+            }
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+    };
+
+    function getResponsiveChartOptions() {
+        const isMobile = window.innerWidth < 640;
+        const fontSize = isMobile ? 9 : 11;
+        const titleFontSize = isMobile ? 10 : 13;
+        const legendFontSize = isMobile ? 10 : 12;
+        const tooltipPadding = isMobile ? {top:6,bottom:6,left:8,right:8} : {top:8,bottom:8,left:10,right:10};
+
+
+        return {
+            ...chartOptionsBase,
+            plugins: {
+                ...chartOptionsBase.plugins,
+                tooltip: {
+                    ...chartOptionsBase.plugins.tooltip,
+                    titleFont: { family: "'Noto Sans KR', sans-serif", size: titleFontSize },
+                    bodyFont: { family: "'Noto Sans KR', sans-serif", size: fontSize },
+                    padding: tooltipPadding
+                },
+                legend: {
+                    ...chartOptionsBase.plugins.legend,
+                    labels: { 
+                        ...chartOptionsBase.plugins.legend.labels,
+                        font: { family: "'Noto Sans KR', sans-serif", size: legendFontSize },
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ...chartOptionsBase.scales.y,
+                    ticks: { 
+                        ...chartOptionsBase.scales.y.ticks,
+                        font: { family: "'Noto Sans KR', sans-serif", size: fontSize },
+                         padding: isMobile ? 2 : 5
+                    }
+                },
+                x: {
+                     ...chartOptionsBase.scales.x,
+                    ticks: { 
+                        ...chartOptionsBase.scales.x.ticks,
+                        font: { family: "'Noto Sans KR', sans-serif", size: fontSize },
+                        padding: isMobile ? 2 : 5
+                    }
+                }
+            }
+        };
+    }
+    
+    const subjectsChartCtx = document.getElementById('subjectsChart').getContext('2d');
+    let subjectsChartInstance = null;
+
+    function renderSubjectsChart() {
+        if (subjectsChartInstance) {
+            subjectsChartInstance.destroy();
+        }
+        if (subjectsChartCtx) {
+            const responsiveOptions = getResponsiveChartOptions();
+            subjectsChartInstance = new Chart(subjectsChartCtx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        wrapLabelsResponsive('Adv. Programming'), 
+                        wrapLabelsResponsive('자료구조 (Data Structure)'), 
+                        wrapLabelsResponsive('알고리즘 (Algorithm)'), 
+                        wrapLabelsResponsive('이산수학 (Discrete Mathematics)')
+                    ],
+                    datasets: [{
+                        label: '학습 비중',
+                        data: [25, 30, 35, 10],
+                        backgroundColor: '#3B82F6',
+                        borderRadius: window.innerWidth < 640 ? 2 : 4, 
+                        barThickness: window.innerWidth < 640 ? 15 : 35, 
+                        borderColor: '#2563EB',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    ...responsiveOptions,
+                    plugins: {
+                        ...responsiveOptions.plugins,
+                        legend: { 
+                            ...responsiveOptions.plugins.legend,
+                            display: true, 
+                            position: 'top', 
+                            align: 'center', 
+                            labels: {...responsiveOptions.plugins.legend.labels, padding: 8} 
+                        }, 
+                        tooltip: {
+                            ...responsiveOptions.plugins.tooltip,
+                            callbacks: {
+                                ...responsiveOptions.plugins.tooltip.callbacks,
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) { label += ': '; }
+                                    if (context.parsed.y !== null) { label += context.parsed.y + '%'; }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            ...responsiveOptions.scales.y,
+                            beginAtZero: true,
+                            max: 40, 
+                            grid: { color: '#E5E7EB' }, 
+                            ticks: { 
+                                ...responsiveOptions.scales.y.ticks,
+                                color: '#4B5563',
+                                callback: function(value) { return value + '%'; },
+                                stepSize: 10,
+                            }
+                        },
+                        x: {
+                             ...responsiveOptions.scales.x,
+                             grid: { display: false },
+                             ticks: { 
+                                ...responsiveOptions.scales.x.ticks,
+                                color: '#4B5563',
+                                maxRotation: 0, 
+                                minRotation: 0,
+                             }
+                        }
+                    },
+                    layout: {
+                        padding: { 
+                            top: window.innerWidth < 640 ? 5 : 10, 
+                            left: window.innerWidth < 640 ? 5 : 10, 
+                            right: window.innerWidth < 640 ? 5 : 10, 
+                            bottom: window.innerWidth < 640 ? 2 : 5 
+                        } 
+                    }
+                }
+            });
+        }
+    }
+
+    renderSubjectsChart(); // Initial render
+    window.addEventListener('resize', renderSubjectsChart); // Re-render on resize
+
+</script>
+</body>
+</html>
